@@ -2,6 +2,7 @@ const assert = require("node:assert/strict");
 const test = require("node:test");
 
 const {
+  PULSE_INTERVAL_SECONDS,
   getTeamsTabQueryUrls,
   isTeamsUrl,
   shouldPulseForIdleState,
@@ -31,4 +32,8 @@ test("getTeamsTabQueryUrls returns the manifest Teams URL patterns", () => {
     "https://teams.microsoft.com/*",
     "https://*.teams.microsoft.com/*",
   ]);
+});
+
+test("pulse interval is 120 seconds", () => {
+  assert.equal(PULSE_INTERVAL_SECONDS, 120);
 });

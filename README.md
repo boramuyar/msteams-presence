@@ -6,7 +6,7 @@ The extension stops when Chrome reports the system as idle or locked.
 
 ## Behavior
 
-- Wakes every 30 seconds with `chrome.alarms`.
+- Wakes every 120 seconds with `chrome.alarms`.
 - Calls `chrome.idle.queryState(60)` before sending any activity pulse.
 - Sends pulses only when Chrome reports `active`.
 - Targets only Teams web URLs:
@@ -24,7 +24,7 @@ The extension stops when Chrome reports the system as idle or locked.
 ## Permissions
 
 - `idle`: checks whether Chrome reports the system as active, idle, or locked.
-- `alarms`: wakes the Manifest V3 service worker every 30 seconds.
+- `alarms`: wakes the Manifest V3 service worker every 120 seconds.
 - `tabs`: finds open Teams tabs and sends each one a pulse message.
 - Teams host permissions: limits the extension to Teams web pages.
 

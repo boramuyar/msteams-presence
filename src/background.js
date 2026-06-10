@@ -1,7 +1,7 @@
 const ACTIVITY_PULSE = "activity-pulse";
 const ALARM_NAME = ACTIVITY_PULSE;
 const IDLE_THRESHOLD_SECONDS = 60;
-const PULSE_INTERVAL_SECONDS = 30;
+const PULSE_INTERVAL_SECONDS = 120;
 const PULSE_INTERVAL_MINUTES = PULSE_INTERVAL_SECONDS / 60;
 const TEAMS_TAB_QUERY_URLS = [
   "https://teams.microsoft.com/*",
