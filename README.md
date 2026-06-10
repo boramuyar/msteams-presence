@@ -14,6 +14,10 @@ The extension stops when Chrome reports the system as idle or locked.
   - `https://teams.microsoft.com/*`
   - `https://*.teams.microsoft.com/*`
 
+## Icon
+
+The extension uses a small custom icon: a purple tile with a movement mark and green availability dot. Source and Chrome icon sizes live in `icons/`.
+
 ## Install in Chrome
 
 1. Open `chrome://extensions`.
