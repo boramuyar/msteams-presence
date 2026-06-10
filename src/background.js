@@ -29,6 +29,10 @@ function shouldPulseForIdleState(state) {
   return state === "active";
 }
 
+function selectTeamsTabForPulse(tabs) {
+  return tabs.find((tab) => typeof tab.id === "number" && isTeamsUrl(tab.url));
+}
+
 function createPulseAlarm() {
   chrome.alarms.create(ALARM_NAME, {
     delayInMinutes: PULSE_INTERVAL_MINUTES,
@@ -53,7 +57,9 @@ function pulseTeamsTabs() {
     }
 
     chrome.tabs.query({ url: getTeamsTabQueryUrls() }, (tabs) => {
-      for (const tab of tabs) {
+      const tab = selectTeamsTabForPulse(tabs);
+
+      if (tab) {
         sendPulseToTab(tab);
       }
     });
@@ -86,6 +92,7 @@ if (typeof module !== "undefined") {
     PULSE_INTERVAL_SECONDS,
     getTeamsTabQueryUrls,
     isTeamsUrl,
+    selectTeamsTabForPulse,
     shouldPulseForIdleState,
   };
 }

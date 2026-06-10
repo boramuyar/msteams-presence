@@ -5,6 +5,7 @@ const {
   PULSE_INTERVAL_SECONDS,
   getTeamsTabQueryUrls,
   isTeamsUrl,
+  selectTeamsTabForPulse,
   shouldPulseForIdleState,
 } = require("../src/background.js");
 
@@ -36,4 +37,17 @@ test("getTeamsTabQueryUrls returns the manifest Teams URL patterns", () => {
 
 test("pulse interval is 120 seconds", () => {
   assert.equal(PULSE_INTERVAL_SECONDS, 120);
+});
+
+test("selectTeamsTabForPulse returns only the first valid Teams tab", () => {
+  const firstTeamsTab = { id: 3, url: "https://teams.microsoft.com/v2/" };
+
+  assert.equal(
+    selectTeamsTabForPulse([
+      { id: 1, url: "https://example.com/" },
+      firstTeamsTab,
+      { id: 4, url: "https://tenant.teams.microsoft.com/_#/calendar" },
+    ]),
+    firstTeamsTab,
+  );
 });

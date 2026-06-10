@@ -1,6 +1,6 @@
 # MS Teams Presence
 
-MS Teams Presence is a minimal Chrome Manifest V3 extension for the Microsoft Teams web client. While Chrome reports the system as active, the extension sends small synthetic mouse movement events to open Teams tabs.
+MS Teams Presence is a minimal Chrome Manifest V3 extension for the Microsoft Teams web client. While Chrome reports the system as active, the extension sends small synthetic mouse movement events to one open Teams tab.
 
 The extension stops when Chrome reports the system as idle or locked.
 
@@ -9,6 +9,7 @@ The extension stops when Chrome reports the system as idle or locked.
 - Wakes every 120 seconds with `chrome.alarms`.
 - Calls `chrome.idle.queryState(60)` before sending any activity pulse.
 - Sends pulses only when Chrome reports `active`.
+- Sends each pulse to one Teams tab only, even when multiple Teams tabs are open.
 - Targets only Teams web URLs:
   - `https://teams.microsoft.com/*`
   - `https://*.teams.microsoft.com/*`
@@ -25,7 +26,7 @@ The extension stops when Chrome reports the system as idle or locked.
 
 - `idle`: checks whether Chrome reports the system as active, idle, or locked.
 - `alarms`: wakes the Manifest V3 service worker every 120 seconds.
-- `tabs`: finds open Teams tabs and sends each one a pulse message.
+- `tabs`: finds open Teams tabs and sends one tab a pulse message.
 - Teams host permissions: limits the extension to Teams web pages.
 
 ## Tests
