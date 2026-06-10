@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="MS Teams Presence icon">
-  <rect width="128" height="128" rx="28" fill="#5B2DBA"/>
-  <path d="M34 74c10-20 29-32 52-34" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" opacity="0.95"/>
-  <path d="M75 28l25 10-21 18-4-28z" fill="#FFFFFF" opacity="0.95"/>
-  <circle cx="92" cy="92" r="24" fill="#12B76A"/>
-  <circle cx="92" cy="92" r="10" fill="#FFFFFF" opacity="0.95"/>
-</svg>
