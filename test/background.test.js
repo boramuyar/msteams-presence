@@ -9,15 +9,35 @@ const {
   shouldPulseForIdleState,
 } = require("../src/background.js");
 
-test("isTeamsUrl accepts Teams HTTPS URLs", () => {
-  assert.equal(isTeamsUrl("https://teams.microsoft.com/v2/"), true);
-  assert.equal(isTeamsUrl("https://tenant.teams.microsoft.com/_#/calendar"), true);
+const SUPPORTED_TEAMS_URL_PATTERNS = [
+  "https://teams.microsoft.com.mcas.ms/*",
+  "https://teams.microsoft.com/*",
+  "https://*.teams.microsoft.com/*",
+  "https://teams.live.com/*",
+  "https://gov.teams.microsoft.us/*",
+  "https://dod.teams.microsoft.us.mcas-gov.us/*",
+  "https://teams.cloud.microsoft/*",
+];
+
+test("isTeamsUrl accepts supported Teams HTTPS URLs", () => {
+  for (const url of [
+    "https://teams.microsoft.com.mcas.ms/path",
+    "https://teams.microsoft.com/v2/",
+    "https://tenant.teams.microsoft.com/_#/calendar",
+    "https://teams.live.com/v2/",
+    "https://gov.teams.microsoft.us/v2/",
+    "https://dod.teams.microsoft.us.mcas-gov.us/v2/",
+    "https://teams.cloud.microsoft/v2/",
+  ]) {
+    assert.equal(isTeamsUrl(url), true, url);
+  }
 });
 
 test("isTeamsUrl rejects non-Teams and lookalike URLs", () => {
   assert.equal(isTeamsUrl("http://teams.microsoft.com/"), false);
   assert.equal(isTeamsUrl("https://example.com/"), false);
   assert.equal(isTeamsUrl("https://teams.microsoft.com.evil.test/"), false);
+  assert.equal(isTeamsUrl("https://teams.live.com.evil.test/"), false);
   assert.equal(isTeamsUrl("not a url"), false);
 });
 
@@ -29,10 +49,7 @@ test("shouldPulseForIdleState returns true only while active", () => {
 });
 
 test("getTeamsTabQueryUrls returns the manifest Teams URL patterns", () => {
-  assert.deepEqual(getTeamsTabQueryUrls(), [
-    "https://teams.microsoft.com/*",
-    "https://*.teams.microsoft.com/*",
-  ]);
+  assert.deepEqual(getTeamsTabQueryUrls(), SUPPORTED_TEAMS_URL_PATTERNS);
 });
 
 test("pulse interval is 120 seconds", () => {

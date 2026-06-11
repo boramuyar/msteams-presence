@@ -10,9 +10,14 @@ The extension stops when Chrome reports the system as idle or locked.
 - Calls `chrome.idle.queryState(60)` before sending any activity pulse.
 - Sends pulses only when Chrome reports `active`.
 - Sends each pulse to one Teams tab only, even when multiple Teams tabs are open.
-- Targets only Teams web URLs:
+- Targets only supported Teams web URLs:
+  - `https://teams.microsoft.com.mcas.ms/*`
   - `https://teams.microsoft.com/*`
   - `https://*.teams.microsoft.com/*`
+  - `https://teams.live.com/*`
+  - `https://gov.teams.microsoft.us/*`
+  - `https://dod.teams.microsoft.us.mcas-gov.us/*`
+  - `https://teams.cloud.microsoft/*`
 
 ## Icon
 
@@ -46,7 +51,18 @@ Run focused tests:
 ```bash
 node --test test/background.test.js
 node --test test/content.test.js
+node --test test/manifest.test.js
 ```
+
+## Build the Chrome Web Store ZIP
+
+Regenerate `dist/msteams-presence.zip`:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/build-dist.ps1
+```
+
+The generated ZIP contains only `manifest.json`, `README.md`, `src/`, and `icons/`.
 
 ## Policy note
 

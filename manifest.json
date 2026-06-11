@@ -10,8 +10,13 @@
   },
   "permissions": ["idle", "tabs", "alarms"],
   "host_permissions": [
+    "https://teams.microsoft.com.mcas.ms/*",
     "https://teams.microsoft.com/*",
-    "https://*.teams.microsoft.com/*"
+    "https://*.teams.microsoft.com/*",
+    "https://teams.live.com/*",
+    "https://gov.teams.microsoft.us/*",
+    "https://dod.teams.microsoft.us.mcas-gov.us/*",
+    "https://teams.cloud.microsoft/*"
   ],
   "background": {
     "service_worker": "src/background.js"
@@ -19,8 +24,13 @@
   "content_scripts": [
     {
       "matches": [
+        "https://teams.microsoft.com.mcas.ms/*",
         "https://teams.microsoft.com/*",
-        "https://*.teams.microsoft.com/*"
+        "https://*.teams.microsoft.com/*",
+        "https://teams.live.com/*",
+        "https://gov.teams.microsoft.us/*",
+        "https://dod.teams.microsoft.us.mcas-gov.us/*",
+        "https://teams.cloud.microsoft/*"
       ],
       "js": ["src/content.js"],
       "run_at": "document_idle"

@@ -4,9 +4,22 @@ const IDLE_THRESHOLD_SECONDS = 60;
 const PULSE_INTERVAL_SECONDS = 120;
 const PULSE_INTERVAL_MINUTES = PULSE_INTERVAL_SECONDS / 60;
 const TEAMS_TAB_QUERY_URLS = [
+  "https://teams.microsoft.com.mcas.ms/*",
   "https://teams.microsoft.com/*",
   "https://*.teams.microsoft.com/*",
+  "https://teams.live.com/*",
+  "https://gov.teams.microsoft.us/*",
+  "https://dod.teams.microsoft.us.mcas-gov.us/*",
+  "https://teams.cloud.microsoft/*",
 ];
+const EXACT_TEAMS_HOSTS = new Set([
+  "teams.microsoft.com.mcas.ms",
+  "teams.microsoft.com",
+  "teams.live.com",
+  "gov.teams.microsoft.us",
+  "dod.teams.microsoft.us.mcas-gov.us",
+  "teams.cloud.microsoft",
+]);
 
 function getTeamsTabQueryUrls() {
   return [...TEAMS_TAB_QUERY_URLS];
@@ -17,7 +30,7 @@ function isTeamsUrl(rawUrl) {
     const url = new URL(rawUrl);
     return (
       url.protocol === "https:" &&
-      (url.hostname === "teams.microsoft.com" ||
+      (EXACT_TEAMS_HOSTS.has(url.hostname) ||
         url.hostname.endsWith(".teams.microsoft.com"))
     );
   } catch {
