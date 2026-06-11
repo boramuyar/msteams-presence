@@ -49,3 +49,15 @@ test("dist build script exists", () => {
     true,
   );
 });
+
+test("package scripts expose pnpm commands", () => {
+  const packageJson = JSON.parse(
+    fs.readFileSync(path.join(root, "package.json"), "utf8"),
+  );
+
+  assert.equal(packageJson.scripts.test, "node --test");
+  assert.equal(
+    packageJson.scripts["build:dist"],
+    "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/build-dist.ps1",
+  );
+});

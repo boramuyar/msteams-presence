@@ -1,0 +1,10 @@
+{
+  "name": "msteams-presence",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Minimal Chrome extension that nudges Microsoft Teams web presence while the system is active.",
+  "scripts": {
+    "test": "node --test",
+    "build:dist": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/build-dist.ps1"
+  }
+}

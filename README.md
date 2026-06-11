@@ -43,7 +43,7 @@ The extension uses a small custom icon with a green availability dot. Chrome ico
 Run all tests:
 
 ```bash
-node --test
+pnpm test
 ```
 
 Run focused tests:
@@ -58,8 +58,8 @@ node --test test/manifest.test.js
 
 Regenerate `dist/msteams-presence.zip`:
 
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/build-dist.ps1
+```bash
+pnpm build:dist
 ```
 
 The generated ZIP contains only `manifest.json`, `README.md`, `src/`, and `icons/`.
